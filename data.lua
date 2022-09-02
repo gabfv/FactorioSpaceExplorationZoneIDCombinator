@@ -13,6 +13,7 @@ for _, sprite_direction in pairs(entity.sprites) do
   sprite_direction.layers[1].filename = "__se-cme-combinator__/graphics/entity.png"
   sprite_direction.layers[1].hr_version.filename = "__se-cme-combinator__/graphics/hr-entity.png"
 end
+entity.item_slot_count = 2
 
 local recipe = table.deepcopy(data.raw.recipe["constant-combinator"])
 recipe.name = ENTITY_NAME
