@@ -18,11 +18,11 @@ local function unset_combinator_values(entity)
   control_behavior.set_signal(3, nil)
 end
 
-local function update_combinators_on_surface(surface_name)
+local function update_combinators_on_surface(surface_name, current_tick)
   local surface_cme_info = global.cme_info[surface_name][1] -- Let's just assume there's only 1 CME per surface for performance
   if surface_cme_info then
     local values = {
-      (surface_cme_info.tick - game.tick) / 60, -- S: seconds
+      (surface_cme_info.tick - current_tick) / 60, -- S: seconds
       surface_cme_info.peak_power / 1000000, -- W: MegaWatts
       surface_cme_info.energy / 1000000, -- J: MegaJoules
     }
@@ -40,13 +40,13 @@ end
 local function on_tick_less_than_60_surfaces(event)
   local surface_name = global.surface_list[event.tick % 60] -- surface #1 processed on tick 1, surface #2 on tick 2, etc.
   if surface_name then
-    update_combinators_on_surface(surface_name)
+    update_combinators_on_surface(surface_name, event.tick)
   end
 end
 
 local function on_tick_more_than_60_surfaces(event)
   for i = event.tick % 60, #global.surface_list, 60 do
-    update_combinators_on_surface(global.surface_list[i])
+    update_combinators_on_surface(global.surface_list[i], event.tick)
   end
 end
 
