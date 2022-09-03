@@ -14,6 +14,7 @@ for _, sprite_direction in pairs(entity.sprites) do
   sprite_direction.layers[1].hr_version.filename = "__se-cme-combinator__/graphics/hr-entity.png"
 end
 entity.item_slot_count = 3
+table.insert(entity.flags, "hide-alt-info") -- No point in showing always the same icons
 
 local recipe = table.deepcopy(data.raw.recipe["constant-combinator"])
 recipe.name = ENTITY_NAME
