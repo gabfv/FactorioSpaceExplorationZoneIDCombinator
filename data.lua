@@ -1,20 +1,34 @@
-local ENTITY_NAME = "se-cme-combinator"
+local ENTITY_NAME = "se-zone-id-combinator"
+-- Set a green tint color
+local TINT_COLOR = {r = 0.25, g = 1, b = 0.25}
 
 local item = table.deepcopy(data.raw.item["constant-combinator"])
 item.name = ENTITY_NAME
 item.place_result = ENTITY_NAME
-item.icon = "__se-cme-combinator__/graphics/icon.png"
+item.icons = {
+  {
+    icon = item.icon,
+    tint = TINT_COLOR
+  }
+}
 
 local entity = table.deepcopy(data.raw["constant-combinator"]["constant-combinator"])
 entity.name = ENTITY_NAME
 entity.minable.result = ENTITY_NAME
-entity.icon = "__se-cme-combinator__/graphics/icon.png"
-for _, sprite_direction in pairs(entity.sprites) do
-  sprite_direction.layers[1].filename = "__se-cme-combinator__/graphics/entity.png"
-  sprite_direction.layers[1].hr_version.filename = "__se-cme-combinator__/graphics/hr-entity.png"
+entity.item_slot_count = 1
+entity.icons = {
+  {
+    icon = entity.icon,
+    tint = TINT_COLOR
+  }
+}
+for _, direction in pairs({"north", "east", "south", "west"}) do
+  for index, layer in pairs(entity.sprites[direction].layers) do
+    entity.sprites[direction].layers[index].tint = TINT_COLOR
+    entity.sprites[direction].layers[index].hr_version.tint = TINT_COLOR
+  end
 end
-entity.item_slot_count = 3
-table.insert(entity.flags, "hide-alt-info") -- No point in showing always the same icons
+-- table.insert(entity.flags, "hide-alt-info") -- No point in showing always the same icons
 
 local recipe = table.deepcopy(data.raw.recipe["constant-combinator"])
 recipe.name = ENTITY_NAME
@@ -24,7 +38,7 @@ recipe.ingredients = {
   {"processing-unit", 10}
 }
 
-table.insert(data.raw.technology["se-energy-beam-defence"].effects,
+table.insert(data.raw.technology["se-spaceship"].effects,
   {type = "unlock-recipe", recipe = ENTITY_NAME}
 )
 
