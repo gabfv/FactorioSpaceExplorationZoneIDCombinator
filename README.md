@@ -1,4 +1,4 @@
-# FactorioSpaceExplorationCMEcombinator
+# Factorio Space Exploration Zone ID Combinator
 Factorio mod for Space Exploration that adds a special combinator that shows the current zone ID as a signal with its correct zone type (asteroid fields, planets, orbits, etc)
 
 ### Caveats
