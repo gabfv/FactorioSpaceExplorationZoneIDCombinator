@@ -34,11 +34,11 @@ local recipe = table.deepcopy(data.raw.recipe["constant-combinator"])
 recipe.name = ENTITY_NAME
 recipe.result = ENTITY_NAME
 recipe.ingredients = {
-  {"copper-cable", 50},
-  {"processing-unit", 10}
+  {"copper-cable", 100},
+  {"electronic-circuit", 100}
 }
 
-table.insert(data.raw.technology["se-spaceship"].effects,
+table.insert(data.raw.technology["circuit-network"].effects,
   {type = "unlock-recipe", recipe = ENTITY_NAME}
 )
 
