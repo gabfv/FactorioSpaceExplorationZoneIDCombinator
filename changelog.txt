@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.1
+Date: ????
+  Changes:
+    - Changed research requirement from spaceship to circuit network.
+    - Changed recipe to require green circuits instead of advanced circuits.
+---------------------------------------------------------------------------------------------------
 Version: 1.0.0
 Date: 2023-09-16
   Features:
